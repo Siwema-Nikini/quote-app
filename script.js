@@ -16,7 +16,12 @@ function newQuote(){
     }else{
         authorText.textContent = quote.author;
     }
-    
+    // check quote length to determine style
+    if(quote.text.length>50){
+        quoteText.classList.add('long-quote');
+    }else{
+        quoteText.classList.remove('long-quote');
+    }
     quoteText.textContent= quote.text;
     
 }
@@ -26,7 +31,8 @@ async function getQuote(){
     try{
         const response = await fetch(apiurl);
         apiQuotes = await response.json();
-        // console.log(apiQuotes[12]);
+
+        // console.log(apiQuotes);
         newQuote();
     }catch(error){
         // catch error here
